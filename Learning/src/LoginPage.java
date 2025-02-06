@@ -23,7 +23,7 @@ public class LoginPage
 		driver.findElement(By.name("bday")).sendKeys("12/09/2001");
 		driver.findElement(By.cssSelector("input[value='Submit']")).click();
 		System.out.println( driver.findElement(By.xpath("//div[@class='alert alert-success alert-dismissible']")).getText());
-		driver.close();
+		//driver.close();
 		
 	}
 }

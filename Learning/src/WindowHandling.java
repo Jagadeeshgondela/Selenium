@@ -1,7 +1,4 @@
 import java.util.Set;
-
-import javax.swing.text.html.HTMLDocument.Iterator;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

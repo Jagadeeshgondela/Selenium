@@ -28,7 +28,9 @@ public class Actionsdemo
 		
 		//Entering text in capital by holding shift key and select the text by double click
 		a.moveToElement(driver.findElement(By.id("twotabsearchtextbox"))).click().keyDown(Keys.SHIFT).sendKeys("mixer").doubleClick().build().perform();
-	}
+		
+		driver.close();
+		}
 	
 }
 
