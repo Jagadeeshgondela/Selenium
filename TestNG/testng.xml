@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="Test.Basics">
+        <methods>
+          <exclude name="test2"/> <!-- Excluding test2 from Test.Basics class -->
+        </methods>
+      </class>
+      <class name="Test.Basics2">
+      <methods>
+      <include name="test5"></include> <!-- Including only test2 from Test.Basics2 class -->
+      </methods>
+      </class>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+<!-- 
+	testng.xml file uses:
+	1. Flexibility to run multiple classes at the same time.
+	2. Exclude a particular test case in a class.
+	3. Run only a particular test case in a class using <include>.
+-->
