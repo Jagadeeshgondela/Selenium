@@ -1,0 +1,28 @@
+1. Abstraction:
+	- Hiding implementation details and showing only essential features to user
+	 EX-1 : There is WebDriver interface in selenium, which is implemented by ChromeDriver/FirefoxDriver classes,
+			when we use driver.get() or driver.findElement() methods, the implementation behind these methods are hidden.
+	 EX-2 : Instead of using Xpaths, we use variable names storing Xpaths in test cases and hiding the real Xpaths
+	 
+	 Uses : Readability, reusability, reduce code complexity
+	
+2. Encapsulation : 
+	- Encapsulation is an object-oriented programming principle that means binding data (variables) and methods (functions) that operate on the data into a single unit (class), 
+		and restricting direct access to some of the object's components.
+			- Prevents outside classes from modifying internal state directly
+		EX : 1. wrap WebElements and actions like click inside page classes 
+			 2. private driver instance and public setup(),tearDown() methodsin BaseClass.
+
+3. Polymorphism : 
+	- Compile time polymorphism (Method overloading)- same method name but different parameters
+	- Run time polymorphism (Method overriding)- same method name but overrides the implementation of parent calss
+	EX : 1. WebDriver interface implemeted by ChromeDriver & EdgeDriver class but implementation is different (Run time polymorphism)
+		 2. let's say have to create 2 login methods one for user & one for admin then method name Login is same but parameters are different in the same class (Compile time polymorphism)
+		 
+		 Uses : Readability, reusability, reduce code complexity
+
+4. Inheritance : 
+	- inheriting the properties and methods of parent class by using extends keyword
+	EX : Let's say we have BaseClass for browser invoking & teardown, all test classes can inherit this base class for browser invoking and teardown without duplicacy
+	
+	uses : reusability
