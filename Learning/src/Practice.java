@@ -123,6 +123,18 @@ public class Practice {
 		FileUtils.copyFile(src, new File(filePath));
 		
 		
+		/* iframe
+		Q: How do you handle elements inside nested iframes?
+				A: First switch to the outer iframe, then to the inner iframe:
+
+				java
+				Copy
+				Edit
+				driver.switchTo().frame("outerFrame");
+				driver.switchTo().frame("innerFrame");
+				// perform actions
+				driver.switchTo().defaultContent(); // back to main*/
+		
 		}
 		
 		

@@ -1,0 +1,84 @@
+1. Reverse the string:
+
+public class JavaPrograms{
+
+	public static void main(String[] args){
+		String s = "Rama";
+		StringBuilder c = new StringBuilder(s);
+		System.out.println(c.reverse());
+}}
+
+
+
+2. Reverse each word in a string:
+
+public class JavaPrograms{
+
+	public static void main(String[] args){
+		String s = "Rama loves Sita";
+		String[] words = s.split(" ");
+		String rstr = "";
+		for(int i=0;i<words.length;i++){
+		StringBuilder c = new StringBuilder(words[i]);
+		rstr=rstr+" "+c.reverse().toString();
+		}
+		System.out.println(rstr.trim());
+}}
+
+
+
+3. find duplicate charecters in a string:
+
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class JavaPrograms{
+
+	public static void main(String[] args){
+		String s = "Rama loves Sita";
+		Map<Character,Integer> obj = new HashMap<>();
+		for(Character c : s.toCharArray()){
+			obj.put(c,obj.getOrDefault(c,0)+1);
+		}
+		
+		for(Map.Entry<Character,Integer> entry : obj.entrySet()){
+			if(entry.getValue()>1){
+				System.out.println(entry.getKey()+"-->"+entry.getValue());
+}
+}
+	
+}}
+
+
+4. Find count occurance of each character:
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class JavaPrograms{
+
+	public static void main(String[] args){
+		String s = "Rama loves Sita";
+		Map<Character,Integer> obj = new HashMap<>();
+		for(Character c : s.toCharArray()){
+			obj.put(c,obj.getOrDefault(c,0)+1);
+		}
+		
+		for(Map.Entry<Character,Integer> entry : obj.entrySet()){
+			
+				System.out.println(entry.getKey()+"-->"+entry.getValue());
+				}
+	
+}}
+
+
+5. Count the number of words in a string:
+
+public class JavaPrograms{
+	public static void main(String[] args){
+		String sentence = "Hare Rama Hare Krishna";
+		String[] words = sentence.split(" ");
+		System.out.println(words.length);
+	}
+}
