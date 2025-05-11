@@ -59,7 +59,7 @@ import java.util.Map;
 public class JavaPrograms{
 
 	public static void main(String[] args){
-		String s = "Rama loves Sita";
+		String s = "Sita loves Rama";
 		Map<Character,Integer> obj = new HashMap<>();
 		for(Character c : s.toCharArray()){
 			obj.put(c,obj.getOrDefault(c,0)+1);
@@ -81,4 +81,30 @@ public class JavaPrograms{
 		String[] words = sentence.split(" ");
 		System.out.println(words.length);
 	}
+}
+
+
+6. Find the first/last non repeating number
+Same for strings(change to character array)
+
+import java.util.HashMap;
+import java.util.ArrayList;
+
+public class JavaPrograms{
+public static void main(String[] args){
+	int a [] = {1,4,2,1,5,7,4,2,1};
+	HashMap<Integer,Integer> map = new HashMap<>();
+	for(int num : a){
+		map.put(num,map.getOrDefault(num,0)+1);
+	}
+	ArrayList<Integer> al = new ArrayList<>();
+	for(HashMap.Entry<Integer,Integer> entry : map.entrySet()){
+		if(entry.getValue()==1){
+			//System.out.println(entry.getKey());	// prints first non repeating number
+			al.add(entry.getKey());
+			//return;
+		}
+	}
+		System.out.println(al.get(al.size()-1));	// prints last non repeating number
+}
 }

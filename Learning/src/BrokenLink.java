@@ -29,6 +29,7 @@ public class BrokenLink {
 		conn.connect();
 		int code = conn.getResponseCode();
 		System.out.println(code);
+		driver.quit();
 	}
 	
 }

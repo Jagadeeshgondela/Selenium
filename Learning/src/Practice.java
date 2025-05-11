@@ -117,13 +117,27 @@ public class Practice {
 		Thread.sleep(3000);
 		js.executeScript("document.querySelector('.tableFixHead').scrollTop=5000");
 		
-		//screenshot
+		//screenshot of web page
 		File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		String filePath = "D:\\QA\\new screenshot.png";
 		FileUtils.copyFile(src, new File(filePath));
 		
+		/* Screenshot of particular element
+		// Locate the element
+        WebElement element = driver.findElement(By.id("logo"));
+
+        // Take screenshot of the element
+        File src = element.getScreenshotAs(OutputType.FILE);
+
+        // Save it to desired location
+        FileUtils.copyFile(src, new File("elementScreenshot.png"));*/
+
+		
 		
 		/* iframe
+		 * WebElement iframe = driver.findElement(By.xpath("//iframe[@class='iframe-class']"));
+			driver.switchTo().frame(iframe);
+		 
 		Q: How do you handle elements inside nested iframes?
 				A: First switch to the outer iframe, then to the inner iframe:
 
