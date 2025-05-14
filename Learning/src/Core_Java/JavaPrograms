@@ -108,3 +108,342 @@ public static void main(String[] args){
 		System.out.println(al.get(al.size()-1));	// prints last non repeating number
 }
 }
+
+
+----Reverse a string without using the reverse() method.----
+
+public class JavaPractice {
+
+	public static void main(String[] args) {
+		String str = "Ram";
+		String rstr = "";
+		for(char c : str.toCharArray()) {
+			rstr=c+rstr;
+		}
+		System.out.println(rstr);
+	}
+
+}
+
+----Check if a string is a palindrome.----
+
+public class JavaPractice {
+
+	public static void main(String[] args) {
+		String str = "Ram";
+		StringBuilder s = new StringBuilder(str);
+		if(s.reverse().toString().equals(str)) 		//.equals checks the content not the reference
+			System.out.println("Palindrome");
+		else
+			System.out.println("Not a Palindrome");
+		
+	}
+
+}
+
+---Find the first non-repeating character in a string.---
+
+import java.util.HashMap;
+
+
+public class JavaPractice {
+
+	public static void main(String[] args) {
+		String str = "Ram raj";
+		HashMap<Character,Integer> map = new HashMap<>();
+		for(char c : str.toCharArray()) {
+			if(Character.isLetter(c)) {	// to avoid spaces as characters
+			char lowerCase = Character.toLowerCase(c);	// changing all characers to lowe case other wise R & r will be two entries in the hasmap
+			map.put(lowerCase,map.getOrDefault(lowerCase,0)+1);
+		}}
+		for(char c : str.toCharArray()) {
+			if(map.get(Character.toLowerCase(c))==1) {
+				System.out.println(c);
+				return;
+			}
+		}
+		System.out.println("No non-repeating character found.");
+}
+}
+
+
+Remove all duplicate characters from a string.
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+
+public class JavaPractice {
+
+	public static void main(String[] args) {
+		String str = "Ram raj";
+		Set<Character> set = new LinkedHashSet<>();
+		for(char c : str.toCharArray())
+			set.add(c);
+		for(char c : set)
+			System.out.print(c);
+			
+}
+}
+
+
+Find the second highest number in an integer array.
+
+import java.util.Arrays;
+
+
+public class JavaPractice {
+
+	public static void main(String[] args) {
+		int[] a = {2,4,7,8,1,5};
+		Arrays.sort(a);	// sorting
+		
+		int highest = a[a.length-1];
+		int second_highest = -1;
+		
+		for(int i=a.length-2;i>=0;i--) {
+			if(a[i]!=highest) {
+				second_highest = a[i];
+				break;
+			}
+		}
+		if(second_highest == -1)
+			System.out.println("no second highest num in array");
+		else
+			System.out.println(second_highest);
+					
+}
+}
+
+Remove duplicates from an array.
+
+import java.util.Set;
+import java.util.LinkedHashSet;
+
+public class JavaPractice {
+
+	public static void main(String[] args) {
+		int[] a = {2,5,7,2,1,5};
+		
+		Set<Integer> set = new LinkedHashSet<>();
+		for(int num : a) 
+			set.add(num);
+		for(int num : set)
+			System.out.print(num+" ");
+}
+}
+
+------ without using any collections--------
+
+public class JavaPractice {
+
+	public static void main(String[] args) {
+		int[] a = {2,5,7,2,1,5};
+		int n = a.length;
+		int[] result = new int[n];
+		int k=0; // for indexing result
+				
+		for(int i=0;i<n;i++) {
+			
+		boolean	isDuplicate = false;
+		
+		for(int j=0;j<k;j++) {
+			if(a[i]==result[j]) {
+				isDuplicate = true;
+				break;
+			}
+		}
+		
+		if(!isDuplicate) {
+			result[k]=a[i];
+			k++;
+		}
+		}
+		
+		for(int i=0;i<k;i++) {
+			System.out.println(result[i]);
+		}
+}
+}
+
+
+
+Sort a list of strings alphabetically.
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Arrays;
+
+public class JavaPractice {
+
+	public static void main(String[] args) {
+		String sentence = "Hi there how are you?";
+		String[] words = sentence.split(" ");
+		ArrayList<String> list = new ArrayList<>(Arrays.asList(words));
+		//Collections.sort(list);	// sorts alphabetically - prints [Hi, are, how, there, you?]
+		//Collections.sort(list, String.CASE_INSENSITIVE_ORDER);	//prints [are, Hi, how, there, you?]
+		Collections.sort(list, String.CASE_INSENSITIVE_ORDER.reversed());	// prints [you?, there, how, Hi, are]
+		
+		String result = String.join(" ", list);		// joining words back to sentence 
+		String cleanSentence = result.replaceAll("[^a-zA-Z ]", "");	// removes '?'
+
+		System.out.println(cleanSentence);	// prints you there how Hi are
+	}
+}
+
+
+
+Merge two arrays and sort the result.
+
+import java.util.Arrays;
+
+public class JavaPractice {
+
+	public static void main(String[] args) {
+		String[] s1 = {"hey","hi"};
+		String[] s2 = {"how","are","you"};
+		String[] result = new String[s1.length+s2.length];
+		
+		System.arraycopy(s1, 0, result, 0, s1.length);
+		System.arraycopy(s2, 0, result,s1.length, s2.length);
+		Arrays.sort(result);
+		for(String word : result)
+			System.out.println(word);
+
+	}
+}
+
+
+Find common elements between two arrays.
+
+public class JavaPractice {
+
+    public static void main(String[] args) {
+        String[] arr1 = {"apple", "banana", "cherry"};
+        String[] arr2 = {"banana", "cherry", "date"};
+
+        System.out.println("Common elements are:");
+        for (int i = 0; i < arr1.length; i++) {
+            for (int j = 0; j < arr2.length; j++) {
+                if (arr1[i].equals(arr2[j])) {
+                    System.out.println(arr1[i]);
+                    break; // Avoid printing the same element multiple times if found again
+                }
+            }
+        }
+    }
+
+		
+}
+
+
+Use HashMap to count word frequencies in a sentence.
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class JavaPractice {
+
+    public static void main(String[] args) {
+        String sentence = "hey you why you called me hey";
+        HashMap<String,Integer> map = new HashMap<>();
+        
+        for(String word : sentence.split(" "))
+        	map.put(word, map.getOrDefault(word,0)+1);
+        
+        for(Map.Entry<String,Integer> entry : map.entrySet())
+        	System.out.println(entry.getKey()+" : "+entry.getValue());   
+    }
+
+}
+
+
+
+Sort a HashMap by values.
+
+import java.util.*;
+
+public class JavaPractice {
+
+    public static void main(String[] args) {
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("apple", 30);
+        map.put("banana", 10);
+        map.put("cherry", 20);
+
+        // Step 1: Convert entrySet to list
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
+
+        // Step 2: Sort the list by values
+        list.sort(Map.Entry.comparingByValue());
+
+        // Step 3: Create a LinkedHashMap to preserve order
+        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+        for (Map.Entry<String, Integer> entry : list) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+
+        // Print sorted map
+        System.out.println("HashMap sorted by values:");
+        for (Map.Entry<String, Integer> entry : sortedMap.entrySet()) {
+            System.out.println(entry.getKey() + " = " + entry.getValue());
+         /*HashMap sorted by values:
+banana = 10
+cherry = 20
+apple = 30*/
+        }
+    }
+}
+
+
+
+Detect and print duplicates using HashSet.
+
+import java.util.HashSet;
+
+public class DuplicateDetector {
+    public static void main(String[] args) {
+        int[] arr = {1, 3, 5, 2, 3, 6, 1, 7};
+
+        HashSet<Integer> seen = new HashSet<>();
+        HashSet<Integer> duplicates = new HashSet<>();
+
+        for (int num : arr) {
+            if (!seen.add(num)) {
+                // If add returns false, it's a duplicate
+                duplicates.add(num);
+            }
+        }
+
+        System.out.println("Duplicate elements are: " + duplicates);
+    }
+}
+
+Implement LRU cache using LinkedHashMap.
+Use Java 8 Streams to filter and collect data from a list.
+
+Find the max and min numbers in a list using streams.
+
+Convert a List of Strings to uppercase using streams.
+
+Group list of objects by a field using Collectors.groupingBy.
+Design a class for a Book object with encapsulation and constructor overloading.
+
+Override equals() and hashCode() methods in a class.
+
+Create an interface and implement it in a class.
+
+Demonstrate abstraction using abstract classes.
+Write a reusable method to select a dropdown value using Selenium.
+
+Create a utility method to read test data from Excel (Apache POI).
+
+Build a small framework component that logs test steps into a file.
+Create a thread using both Thread class and Runnable interface.
+
+Synchronize access to a shared variable in a multithreaded environment.
+Read a file and count how many times each word appears.
+
+Handle multiple exceptions in a try-catch block.
+
+Write test results into a file using BufferedWriter.
