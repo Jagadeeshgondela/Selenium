@@ -422,9 +422,64 @@ public class DuplicateDetector {
 Implement LRU cache using LinkedHashMap.
 Use Java 8 Streams to filter and collect data from a list.
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class StreamFilterExample {
+    public static void main(String[] args) {
+        List<String> names = Arrays.asList("Alice", "Bob", "Andrew", "John", "Amanda");
+
+        // Filter names starting with 'A' and collect into a new list
+        List<String> filteredNames = names.stream()
+                                          .filter(name -> name.startsWith("A"))
+                                          .collect(Collectors.toList());
+
+        System.out.println("Filtered Names: " + filteredNames);
+    }
+}
+
+
 Find the max and min numbers in a list using streams.
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+public class StreamMinMaxExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(12, 5, 8, 21, 3, 19);
+
+        // Find Maximum
+        Optional<Integer> max = numbers.stream()
+                                       .max(Integer::compareTo);
+
+        // Find Minimum
+        Optional<Integer> min = numbers.stream()
+                                       .min(Integer::compareTo);
+
+        max.ifPresent(m -> System.out.println("Maximum: " + m));
+        min.ifPresent(m -> System.out.println("Minimum: " + m));
+    }
+}
+
+
 Convert a List of Strings to uppercase using streams.
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.Arrays;
+
+public class JavaPractice {
+
+    public static void main(String[] args) {
+        List<String> words = Arrays.asList("hey","hi","goD");
+        List<String> upper = words.stream().map(n-> n.toUpperCase()).collect(Collectors.toList());
+        for(String word : upper) System.out.println(word);
+
+}
+}
+
 
 Group list of objects by a field using Collectors.groupingBy.
 Design a class for a Book object with encapsulation and constructor overloading.

@@ -28,6 +28,11 @@ public class BrokenLinks {
 		
 		for(WebElement link : Links) {
 			String url = link.getAttribute("href");
+			 if (url == null || url.isEmpty()) {
+	                System.out.println("URL is empty or null for link: " + link.getText());
+	                continue;
+	            }
+
 			HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
 			conn.setRequestMethod("HEAD");
 			conn.connect();
