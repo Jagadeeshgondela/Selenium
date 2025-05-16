@@ -4,6 +4,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.Duration;
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -13,9 +14,13 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import static org.openqa.selenium.support.locators.RelativeLocator.with;
+
 
 public class SeleniumPractice {
 
@@ -40,12 +45,32 @@ public class SeleniumPractice {
 		//alert.dismiss();
 		//alert.sendKeys("i entered text in alert")
 		
+		
 		//---Frames & iframes---
 		WebElement frame1 = driver.findElement(By.id("courses-iframe"));
 		driver.switchTo().frame(frame1);
 		driver.findElement(By.xpath("//a[text()='JOIN NOW']")).click();
 		Thread.sleep(100);
 		driver.switchTo().defaultContent();
+		
+		//--- DropDowns---
+		
+		Select dropDown = new Select(driver.findElement(By.name("dropdown-class-example")));
+		dropDown.selectByIndex(0);
+		dropDown.selectByValue("option2");
+		dropDown.selectByVisibleText("Option3");
+		
+		//---Mouse & KeyBoard Actions---
+				WebElement hoverTitle = driver.findElement(By.xpath("//legend[text()='Mouse Hover Example']"));
+				WebElement hoverButton = driver.findElement(with(By.tagName("button")).below(hoverTitle));	// using relative locator
+				WebElement reload = driver.findElement(By.xpath("//a[text()='Reload']"));
+				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)",hoverButton);
+				Thread.sleep(100);
+				
+				Actions actions  = new Actions(driver);
+				actions.moveToElement(hoverButton).click(reload).build().perform();
+				
+				
 		
 		// ---FullScreenshot---
 		File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
@@ -105,6 +130,20 @@ public class SeleniumPractice {
 				}
 			}
 			System.out.println("No.of 7s present in table2 : "+count);
+			
+			//---Handling multiple windows---
+			
+			driver.findElement(By.id("openwindow")).click();
+			String parent = driver.getWindowHandle();
+			Set<String> windows = driver.getWindowHandles();
+			if(windows.size()>0) {
+			for(String window : windows) {
+				driver.switchTo().window(window);
+				System.out.println(driver.getTitle());
+			}
+			}
+			driver.switchTo().window(parent);
+			System.out.println(driver.getTitle());
 		
 		}finally {
 			driver.quit();

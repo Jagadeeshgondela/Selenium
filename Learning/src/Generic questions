@@ -1,0 +1,20 @@
+In our project, we use
+1. Selenium version = 3.141.59
+2. Testng version = 6.8
+
+Project structure:
+
+	src
+	|-- Main
+	|   |-- Drivers
+	|
+	|-- test
+		|-- Java
+		|	|-- Java classes for each page
+		|-- Resources
+			|-- Feature files
+			|-- testData
+			
+Total no.of Regression TC : 2400 TC (400 scripts) - 75 to 80 scripts i created
+Total no.of Sanity TC : 
+Total no.of Smoke TC : 60TC
