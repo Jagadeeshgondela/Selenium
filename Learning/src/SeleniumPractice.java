@@ -1,9 +1,15 @@
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.Duration;
+import java.util.Iterator;
 import java.util.List;
+<<<<<<< Upstream, based on branch 'master' of https://github.com/Jagadeeshgondela/Selenium
+=======
+import java.util.Properties;
+>>>>>>> 805a5e4 Read data from .properties & Excel
 import java.util.Set;
 
 import org.openqa.selenium.Alert;
@@ -131,6 +137,7 @@ public class SeleniumPractice {
 			}
 			System.out.println("No.of 7s present in table2 : "+count);
 			
+<<<<<<< Upstream, based on branch 'master' of https://github.com/Jagadeeshgondela/Selenium
 			//---Scenario-3 : Handling multiple windows(go to 3rd window and fill the form with the data present in .properties file)---
 			
 			driver.findElement(By.id("openwindow")).click();
@@ -146,8 +153,49 @@ public class SeleniumPractice {
 			}
 			driver.switchTo().window(parent);
 			System.out.println(driver.getTitle());
+=======
+			
+		driver.findElement(By.id("openwindow")).click();
+		String parentWindow = driver.getWindowHandle();
+>>>>>>> 805a5e4 Read data from .properties & Excel
 		
-		}finally {
+		Set<String> handles1 = driver.getWindowHandles();
+		for(String handle : handles1) {
+			if(!handle.equals(parentWindow)) {
+				driver.switchTo().window(handle);
+				break;
+			}
+		}
+		
+		
+		driver.findElement(By.xpath("//a[contains(text(),'Access')]")).click();
+		
+		Set<String> handles2 = driver.getWindowHandles();
+		for(String handle : handles2) {
+			if(!handle.equals(parentWindow)&& !handle.contains(handle)) {
+				driver.switchTo().window(handle);
+				break;
+			}
+		}
+		
+		driver.close();
+		
+		driver.switchTo().window(parentWindow);
+		
+		// Reading data from .properties file
+		Properties prop = new Properties();
+		FileInputStream fis = new FileInputStream("C:\\Users\\USER\\git\\New_Selenium\\Selenium\\Learning\\src\\Resources\\ConfigProperties.properties");
+		prop.load(fis);
+		String user_name = prop.getProperty("UserName");	// get UserName value
+		String mail = prop.getProperty("Email");			// get Email value
+		
+		driver.navigate().to("https://rahulshettyacademy.com/");
+		driver.findElement(By.xpath("//a[text()='JOIN NOW']")).click();
+		driver.findElement(By.id("name")).sendKeys(user_name);
+		driver.findElement(By.id("email")).sendKeys(mail);
+		}
+		finally {
+			Thread.sleep(10000);
 			driver.quit();
 		}
 		
