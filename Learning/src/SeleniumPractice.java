@@ -6,10 +6,7 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
-<<<<<<< Upstream, based on branch 'master' of https://github.com/Jagadeeshgondela/Selenium
-=======
 import java.util.Properties;
->>>>>>> 805a5e4 Read data from .properties & Excel
 import java.util.Set;
 
 import org.openqa.selenium.Alert;
@@ -137,7 +134,7 @@ public class SeleniumPractice {
 			}
 			System.out.println("No.of 7s present in table2 : "+count);
 			
-<<<<<<< Upstream, based on branch 'master' of https://github.com/Jagadeeshgondela/Selenium
+
 			//---Scenario-3 : Handling multiple windows(go to 3rd window and fill the form with the data present in .properties file)---
 			
 			driver.findElement(By.id("openwindow")).click();
@@ -153,11 +150,11 @@ public class SeleniumPractice {
 			}
 			driver.switchTo().window(parent);
 			System.out.println(driver.getTitle());
-=======
+
 			
 		driver.findElement(By.id("openwindow")).click();
 		String parentWindow = driver.getWindowHandle();
->>>>>>> 805a5e4 Read data from .properties & Excel
+
 		
 		Set<String> handles1 = driver.getWindowHandles();
 		for(String handle : handles1) {
