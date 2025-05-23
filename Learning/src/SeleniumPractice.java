@@ -4,10 +4,13 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -22,6 +25,8 @@ import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
 import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
 
@@ -190,6 +195,14 @@ public class SeleniumPractice {
 		driver.findElement(By.xpath("//a[text()='JOIN NOW']")).click();
 		driver.findElement(By.id("name")).sendKeys(user_name);
 		driver.findElement(By.id("email")).sendKeys(mail);
+		
+		//---Scenario-4 : Validate all options in the dropdown
+		driver.navigate().to("https://rahulshettyacademy.com/AutomationPractice/");
+		Select dropDown1 = new Select(driver.findElement(By.id("dropdown-class-example")));
+		List<WebElement> allOptions = dropDown1.getOptions();
+		List<String> actual = allOptions.stream().map(WebElement::getText).collect(Collectors.toList());
+		List<String> expected = Arrays.asList("Select","Option1","Option2","Option3");
+		Assert.assertEquals(actual, expected);
 		}
 		finally {
 			Thread.sleep(10000);
