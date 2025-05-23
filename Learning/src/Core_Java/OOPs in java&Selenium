@@ -2,7 +2,7 @@
 	- Hiding implementation details and showing only essential features to user
 	 EX-1 : There is WebDriver interface in selenium, which is implemented by ChromeDriver/FirefoxDriver classes,
 			when we use driver.get() or driver.findElement() methods, the implementation behind these methods are hidden.
-	 EX-2 : Instead of using Xpaths, we use variable names storing Xpaths in test cases and hiding the real Xpaths
+	 EX-2 : We call the  methods to perform an action in a test case but the actual implementation of the method is hidden. like click button, drag & Drop
 	 
 	 Uses : Readability, reusability, reduce code complexity
 	
@@ -11,7 +11,7 @@
 		and restricting direct access to some of the object's components.
 			- Prevents outside classes from modifying internal state directly
 		EX : 1. wrap WebElements and actions like click inside page classes 
-			 2. private driver instance and public setup(),tearDown() methodsin BaseClass.
+			 2. private driver instance and public setup(),tearDown() methods in BaseClass.
 
 3. Polymorphism : 
 	- Compile time polymorphism (Method overloading)- same method name but different parameters(either no.of parameters or datatype of parameters)

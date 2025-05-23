@@ -94,7 +94,7 @@ public class SeleniumPractice {
 		FileHandler.copy(section, new File(path3));
 		
 		
-		// ---Find which links are working in the footer section---
+		// ---Scenario-1 : Broken links find which links are working in the footer section---
 		
 		List<WebElement> footerLinks = footerSection.findElements(By.tagName("a"));
 		System.out.println("No.of links present in footer section : "+footerLinks.size());
@@ -116,7 +116,7 @@ public class SeleniumPractice {
 			}
 		
 		
-			//--- Find no.of 7s present in the table---
+			//--- Scenario-2: Find no.of 7s present in the table---
 			
 			int count = 0;
 			WebElement table2 = driver.findElement(By.xpath("(//table[@id='product'])[2]"));
@@ -131,15 +131,17 @@ public class SeleniumPractice {
 			}
 			System.out.println("No.of 7s present in table2 : "+count);
 			
-			//---Handling multiple windows---
+			//---Scenario-3 : Handling multiple windows(go to 3rd window and fill the form with the data present in .properties file)---
 			
 			driver.findElement(By.id("openwindow")).click();
 			String parent = driver.getWindowHandle();
 			Set<String> windows = driver.getWindowHandles();
 			if(windows.size()>0) {
 			for(String window : windows) {
+				if(!window.equals(parent)) {
 				driver.switchTo().window(window);
 				System.out.println(driver.getTitle());
+				}
 			}
 			}
 			driver.switchTo().window(parent);
