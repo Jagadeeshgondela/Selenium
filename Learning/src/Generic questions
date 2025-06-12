@@ -1,20 +1,102 @@
 In our project, we use
 1. Selenium version = 3.141.59
-2. Testng version = 6.8
+2. Java = 8
+3. Testng version = 6.8
 
 Project structure:
 
 	src
 	|-- Main
-	|   |-- Drivers
+	|   |-- Java -- Java classes for each page
+	|			|-- Resources -- config.properties
 	|
 	|-- test
-		|-- Java
-		|	|-- Java classes for each page
-		|-- Resources
-			|-- Feature files
-			|-- testData
+						|-- Java
+						|					|-- Test classes
+						|-- Resources
+												|-- Feature files (.config files)
+												|-- TestData
 			
 Total no.of Regression TC : 2400 TC (400 scripts) - 75 to 80 scripts i created
 Total no.of Sanity TC : 
 Total no.of Smoke TC : 60TC
+
+
+Advantages of Selenium:
+ 1. Open Source & Free
+ 2. Supports Multiple Languages
+ 3. Cross-Browser Testing
+ 4. Cross-Platform Compatibility
+ 5. Wide Integration Support
+ 6. Supports Parallel & Grid Execution
+ 7. Supports Headless Testing
+ 
+ 
+ Disadvantages of Selenium:
+ 1. Only for Web Applications
+ 2. No Built-in Reporting
+ 3. No Built-in Test Management
+ 9. Slow Compared to Headless Tools
+Slower execution compared to:
+
+Cypress
+
+Playwright
+
+Because Selenium runs real browsers unless explicitly set to headless.
+
+ 
+Different types of Relative xpaths:
+
+1. By Attribute : //input[@id='username']
+
+2. Using contains()
+
+//input[contains(@placeholder, 'Search')]
+//button[contains(text(), 'Submit')]
+//div[contains(@class, 'active')]
+
+ 3. Using starts-with()
+
+//input[starts-with(@id, 'user')]
+//div[starts-with(text(), 'Welcome')]
+
+4. Using text()
+
+//button[text()='Login']
+//h2[contains(text(),'Hello')]
+//span[normalize-space(text())='Sign out']
+
+5. Using Multiple Conditions
+
+//input[@type='text' and @name='email']
+//div[@class='card' and contains(text(),'Welcome')]
+
+6. With Parent or Ancestor Axis
+
+//input[@id='username']/parent::div
+//span[text()='Logout']/ancestor::nav
+
+7. Following Sibling / Preceding Sibling
+
+//label[text()='Email']/following-sibling::input
+//h2[text()='Heading']/preceding-sibling::p
+
+8. Indexing (only if necessary)
+
+(//input[@type='text'])[2]
+//ul/li[3]
+
+9. Wildcard & Any Attribute
+
+//*[@*='username']   → element with any attribute = "username"
+//*[@placeholder='Search']  → any tag with that attribute
+
+Relative locators(only for Selenium 4)
+
+WebElement element = driver.findElement(with(By.tagName("input")).above(referenceElement));
+1. above()
+2. below()
+3. toLeftOf()
+4. toRightOf()
+5. near()

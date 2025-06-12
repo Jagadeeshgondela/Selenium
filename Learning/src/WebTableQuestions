@@ -1,0 +1,116 @@
+1. How do you locate all the rows in a web table using Selenium?
+
+List<WebElement> rows = driver.findElements(By.xpath("//table[@id='tableID']//tr"));
+System.out.println("Total rows: " + rows.size());
+
+
+2. How do you get the number of rows and columns in a table?
+
+// Count rows (excluding header)
+List<WebElement> rows = driver.findElements(By.xpath("//table[@id='tableID']//tr[position()>1]"));
+
+// Count columns (from header row)
+List<WebElement> columns = driver.findElements(By.xpath("//table[@id='tableID']//tr[1]/th"));
+
+System.out.println("Rows: " + rows.size());
+System.out.println("Columns: " + columns.size());
+
+
+3. Write a code snippet to print all data from a web table.
+
+List<WebElement> allRows = driver.findElements(By.xpath("//table[@id='tableID']//tr"));
+
+for (WebElement row : allRows) {
+    List<WebElement> cells = row.findElements(By.tagName("td"));
+    for (WebElement cell : cells) {
+        System.out.print(cell.getText() + "  ");
+    }
+    System.out.println();
+}
+
+
+4.  How do you get text from a specific cell (e.g., Row 3, Column 2)?
+
+WebElement cell = driver.findElement(By.xpath("//table[@id='tableID']//tr[3]/td[2]"));
+System.out.println("Cell value: " + cell.getText());
+
+
+5.How to click a checkbox in a specific row based on a column value?
+
+String targetRegNo = "TS09AB1234";
+
+List<WebElement> rows = driver.findElements(By.xpath("//table[@id='tableID']//tr"));
+for (WebElement row : rows) {
+    if (row.getText().contains(targetRegNo)) {
+        row.findElement(By.xpath(".//input[@type='checkbox']")).click();
+        break;
+    }
+}
+
+
+
+6. Find the row where “Product Name” is “iPhone” and print its price.
+String productName = "iPhone";
+
+List<WebElement> rows = driver.findElements(By.xpath("//table[@id='productTable']//tr"));
+
+for (WebElement row : rows) {
+    List<WebElement> cells = row.findElements(By.tagName("td"));
+    if (!cells.isEmpty() && cells.get(0).getText().equalsIgnoreCase(productName)) {
+        String price = cells.get(2).getText(); // Assuming price is in 3rd column
+        System.out.println("Price of iPhone: " + price);
+        break;
+    }
+}
+
+
+7. How to find duplicate values in a table column using Java + Selenium?
+Set<String> seen = new HashSet<>();
+Set<String> duplicates = new HashSet<>();
+
+List<WebElement> columnData = driver.findElements(By.xpath("//table[@id='tableID']//tr/td[2]")); // 2nd column
+
+for (WebElement cell : columnData) {
+    String text = cell.getText();
+    if (!seen.add(text)) {
+        duplicates.add(text);
+    }
+}
+System.out.println("Duplicate values: " + duplicates);
+
+
+8. How to sort table data and validate it is sorted correctly?
+// Click column header to sort
+driver.findElement(By.xpath("//table[@id='tableID']//th[2]")).click();
+
+// Capture column values after sorting
+List<WebElement> columnData = driver.findElements(By.xpath("//table[@id='tableID']//tr/td[2]"));
+List<String> actualList = new ArrayList<>();
+for (WebElement e : columnData) {
+    actualList.add(e.getText());
+}
+
+// Compare with sorted version
+List<String> sortedList = new ArrayList<>(actualList);
+Collections.sort(sortedList);
+
+System.out.println("Is Sorted: " + actualList.equals(sortedList));
+
+
+
+9. How to handle dynamic web tables where rows/columns change?
+
+List<WebElement> rows = driver.findElements(By.xpath("//table[@id='tableID']//tr"));
+
+for (int i = 2; i <= rows.size(); i++) {
+    String dynamicXpath = "//table[@id='tableID']//tr[" + i + "]/td[1]";
+    String value = driver.findElement(By.xpath(dynamicXpath)).getText();
+    System.out.println("Row " + i + ": " + value);
+}
+
+
+
+
+
+
+
