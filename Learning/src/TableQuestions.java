@@ -14,16 +14,16 @@ public class TableQuestions {
 		
 		// 1. No.of rows & columns in a web table
 		
-		int rows = driver.findElements(By.xpath("//legend[contains(text(),'header')]/following-sibling::div/table//tr")).size();
-		int columns = driver.findElements(By.xpath("//legend[contains(text(),'header')]/following-sibling::div/table//tr[1]//th")).size();
+		int row_count = driver.findElements(By.xpath("//legend[contains(text(),'header')]/following-sibling::div/table//tr")).size();
+		int columns_count = driver.findElements(By.xpath("//legend[contains(text(),'header')]/following-sibling::div/table//tr[1]//th")).size();
 		
-		System.out.println("No.of Rows : "+rows);
-		System.out.println("No.of Columns : "+columns);
+		System.out.println("No.of Rows : "+row_count);
+		System.out.println("No.of Columns : "+columns_count);
 		
 		// 2. print all cells data
 		
-		for(int i=1; i<rows;i++) {
-			for(int j=1;j<=columns;j++) {
+		for(int i=1; i<row_count;i++) {
+			for(int j=1;j<=columns_count;j++) {
 				WebElement cell = driver.findElement(By.xpath("//legend[contains(text(),'header')]/following-sibling::div/table//tr["+i+"]//td["+j+"]"));
 				System.out.print(cell.getText()+" ");
 			}
@@ -48,7 +48,21 @@ public class TableQuestions {
 		
 		// 4.  How do you click a link/button present in a specific row? (Print name where amount=37)
 		
-		//System.out.println();
+		String amount = "37";
+		List<WebElement> rows = table2.findElements(By.tagName("tr"));
+		for(WebElement row : rows) {
+			if(row.getText().contains(amount)) {
+				System.out.println(row.getText().split(" ")[0]);
+				break;
+			}
+		}
+		
+		
+		// 5. There is a particular Vehicle number present somewhere in the table, need to click the checkbox present in that row
+		
+		// xpath = //table[@id='myTable']//tr[td[contains(text(),'AP01AB1234')]]//input[@type='checkbox']
+
+		
 		}
 		finally{
 		driver.quit();
