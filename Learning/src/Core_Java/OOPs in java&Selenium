@@ -16,7 +16,7 @@
 3. Polymorphism : 
 	- Compile time polymorphism (Method overloading)- same method name but different parameters(either no.of parameters or datatype of parameters)
 	- Run time polymorphism (Method overriding)- same method name but overrides the implementation of parent calss
-	EX : 1. WebDriver interface implemeted by ChromeDriver & EdgeDriver class but implementation is different (Run time polymorphism)
+	EX : 1. Implementing ITestListener & overriding the methods like onTestSuccess, onTestFailure and giving our own method body(taking ss/ printing some msg)
 		 2. let's say have to create 2 login methods one for user & one for admin then method name Login is same but parameters are different in the same class (Compile time polymorphism)
 		 
 		 Uses : Readability, reusability, reduce code complexity
