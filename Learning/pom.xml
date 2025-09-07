@@ -3,6 +3,7 @@
   <groupId>Learning</groupId>
   <artifactId>Selenium</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
   <dependencies>
   <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 <dependency>
@@ -41,8 +42,10 @@
     <version>2.11.0</version>  <!-- Latest version -->
 </dependency>
 
-  
+
+
   </dependencies>
+  
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>

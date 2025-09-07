@@ -2,7 +2,7 @@
 	- Hiding implementation details and showing only essential features to user
 	 EX-1 : There is WebDriver interface in selenium, which is implemented by ChromeDriver/FirefoxDriver classes,
 			when we use driver.get() or driver.findElement() methods, the implementation behind these methods are hidden.
-	 EX-2 : We call the  methods to perform an action in a test case but the actual implementation of the method is hidden. like click button, drag & Drop
+	 EX-2 : We call the  methods to perform an action in a test case but the actual implementation of the method is hidden. like LoginPage.login()
 	 
 	 Uses : Readability, reusability, reduce code complexity
 	
@@ -10,14 +10,36 @@
 	- Encapsulation is an object-oriented programming principle that means binding data (variables) and methods (functions) that operate on the data into a single unit (class), 
 		and restricting direct access to some of the object's components.
 			- Prevents outside classes from modifying internal state directly
-		EX : 1. wrap WebElements and actions like click inside page classes 
-			 2. private driver instance and public setup(),tearDown() methods in BaseClass.
+			
+		EX : 1. wrap private WebElements and public methods inside page classes. POM design pattern
+			 			2. private driver instance and public setup(),tearDown() methods in BaseClass.
 
 3. Polymorphism : 
 	- Compile time polymorphism (Method overloading)- same method name but different parameters(either no.of parameters or datatype of parameters)
+			Ex: Selenium inbuilt methods implementing overloading:
+			
+							1. driver.findElement(By.id("username")); //by id
+										driver.findElement(By.xpath("//input[@name='email']")); //by xpath
+							
+							2. driver.switchTo().frame(0);                 // by index
+										driver.switchTo().frame("frameName");       // by name or ID
+										driver.switchTo().frame(driver.findElement(By.tagName("iframe"))); // by WebElement
+							
+							Customized methods:
+							
+							1. Login(uName,pwd)
+										Login(email, pwd)
+							
+							
 	- Run time polymorphism (Method overriding)- same method name but overrides the implementation of parent calss
-	EX : 1. Implementing ITestListener & overriding the methods like onTestSuccess, onTestFailure and giving our own method body(taking ss/ printing some msg)
-		 2. let's say have to create 2 login methods one for user & one for admin then method name Login is same but parameters are different in the same class (Compile time polymorphism)
+	EX : 1. WebDriver Interface & Browser Classes
+
+						WebDriver is an interface.Browser drivers like ChromeDriver, FirefoxDriver, EdgeDriver override its methods.
+
+						WebDriver driver = new ChromeDriver();
+						driver.get("https://deloitte.com");   // get() overridden in ChromeDriver
+						
+						2. Implementing ITestListener & overriding the methods like onTestSuccess, onTestFailure and giving our own method body(taking ss/ printing some msg)
 		 
 		 Uses : Readability, reusability, reduce code complexity
 
@@ -48,3 +70,44 @@
 	}
 	
 	
+	Q1 : Difference between Abstract class and Interface.
+	
+	Ans : Abstract class can have both abstract and concrete methods, while an interface (before Java 8) only had abstract methods. 
+	With Java 8, interfaces can also have default and static methods. A class can extend only one abstract class, but it can implement multiple interfaces. 
+	Abstract classes are used when you want to share some common functionality, while interfaces are used when you want to define a contract for multiple classes to follow.”
+	
+	Q2 : Can we overload main() method?
+	
+	ANS : Yes, You can define multiple main() methods with different parameter lists (overloading), but only the standard one will be called automatically by the JVM.
+	
+	public class MainOverloadExample {
+
+    // Standard entry point
+    public static void main(String[] args) {
+        System.out.println("Main with String[] args");
+        
+        // Calling overloaded versions explicitly
+        main(10);
+        main("Deloitte Interview");
+    }
+
+    // Overloaded versions
+    public static void main(int x) {
+        System.out.println("Main with int: " + x);
+    }
+
+    public static void main(String str) {
+        System.out.println("Main with String: " + str);
+    }
+}
+	
+	
+	Q : Difference between local, instance, static, and final variables.
+	
+	ANS : Local Variable → Declared inside a method/constructor/block. Exists only during method execution. Stored in stack memory. Must be initialized before use.
+
+							Instance Variable → Declared inside a class but outside any method, and without static keyword. Each object gets its own copy. Stored in heap memory. Lifetime = object’s lifetime.
+
+							Static Variable → Declared with static keyword. Belongs to the class, not objects. Shared across all objects. Stored in method area/class area.
+
+							Final Variable → Value cannot be changed once assigned. Can be local, instance, or static. Used to define constants.

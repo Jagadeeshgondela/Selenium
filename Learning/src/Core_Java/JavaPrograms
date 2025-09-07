@@ -5,7 +5,7 @@ public class JavaPrograms{
 	public static void main(String[] args){
 		String s = "Rama";
 		StringBuilder c = new StringBuilder(s);
-		System.out.println(c.reverse());
+		System.out.println(c.reverse().toString());
 }}
 
 
@@ -87,13 +87,14 @@ public class JavaPrograms{
 6. Find the first/last non repeating number
 Same for strings(change to character array)
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class JavaPrograms{
 public static void main(String[] args){
 	int a [] = {1,4,2,1,5,7,4,2,1};
-	HashMap<Integer,Integer> map = new HashMap<>();
+	Map<Integer,Integer> map = new LinkedHashMap<>();
 	for(int num : a){
 		map.put(num,map.getOrDefault(num,0)+1);
 	}
@@ -124,6 +125,26 @@ public class JavaPractice {
 	}
 
 }
+
+--- Find duplicate words in a sentence, handle , and capital ----
+
+    public static void main(String[] args) {
+        String s = "hey jaga, how are you Jaga?";
+        Map<String,Integer> map = new HashMap<>();
+        for(String word : s.split(" ")){
+            word = word.replaceAll("[^a-zA-Z]","");// Strings are immutable, after replacing you have to store it in a variable otherwise the chages won't applicable to the main string
+            word = word.toUpperCase();
+            map.put(word,map.getOrDefault(word,0)+1);
+        } 
+        
+        for(Map.Entry<String,Integer> entry : map.entrySet()){
+            if(entry.getValue()>1){
+                System.out.println(entry.getKey());
+            }
+        }
+    }
+}
+
 
 ----Check if a string is a palindrome.----
 
