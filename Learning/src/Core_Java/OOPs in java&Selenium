@@ -100,6 +100,23 @@
         System.out.println("Main with String: " + str);
     }
 }
+
+- Constructor : special method with same name as class, no return type(not even void), automatically called when an object is created, can be assign values to the varaibles mentioned as parameters in the constructor at the time of object creation, 
+main purpose : to initialize instance variables.
+
+public class LoginPage {
+    WebDriver driver; //instance variable
+
+    // Constructor
+    public LoginPage(WebDriver driver) {
+        this.driver = driver; // assigning local variable to instance variable
+    }
+
+    public void enterUsername(String user) {
+        driver.findElement(By.id("username")).sendKeys(user);
+    }
+}
+
 	
 	
 	Q : Difference between local, instance, static, and final variables.
